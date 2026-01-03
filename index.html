@@ -1,23 +1,377 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+    <!-- Schema.org 구조화 데이터 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MovingCompany",
+      "name": "송도 포장이사 전문",
+      "description": "송도 국제업무지구, 랜드마크시티 등 송도 전역 원룸, 투룸, 빌라, 아파트, 오피스텔 포장이사 및 이사짐센터 전문 서비스",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "인천광역시 연수구 송도동 2XX",
+        "addressLocality": "인천광역시 연수구",
+        "addressRegion": "인천광역시",
+        "postalCode": "220XX",
+        "addressCountry": "KR"
+      },
+      "telephone": "032-XXX-XXXX",
+      "url": "https://www.example.com/songdo-move",
+      "openingHours": "Mo-Su 08:00-20:00",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "송도 이사 서비스",
+        "itemListElement": [
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"송도 원룸 포장이사"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"송도 투룸 포장이사"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"송도 아파트 포장이사"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"송도 오피스텔 포장이사"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"송도 사무실 이사"}},
+          {"@type":"Offer","itemOffered":{"@type":"Service","name":"송도 이사짐센터 보관서비스"}}
+        ]
+      }
+    }
+    </script>
+
+    <link rel="canonical" href="https://www.example.com/songdo-move">
+
+    <!-- CSS (Aesthetic and Structure) -->
+    <style>
+        /* 기본 레이아웃 및 폰트 설정 */
+        body { font-family: 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif; margin:0;padding:0; background-color: #f7f9fc; color:#333; line-height:1.8; font-size:16px; }
+        header, section, footer { max-width: 1000px; margin: 20px auto; padding: 0 20px; box-sizing: border-box; }
+
+        /* 색상 팔레트 및 디자인 요소 */
+        :root {
+            --primary-color: #0078D7;   /* 핵심 CTA 색상 (청색) */
+            --secondary-color: #f0f8ff; /* 섹션 배경색 (부드러운 하늘색) */
+            --accent-color: #ffb74d;    /* 강조 색상 (주황) */
+            --text-color: #333;
+            --light-text-color: #555;
+            --border-color: #e0e0e0;
+            --header-bg: #ffffff;
+        }
+
+        /* 헤더 스타일 */
+        header { background-color: var(--header-bg); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 30px 20px; margin-top: 30px; }
+        header h1 { color: var(--primary-color); font-size: 2.5em; margin-bottom: 10px; line-height: 1.3; font-weight: bold; }
+        header p { font-size: 1.1em; color: var(--light-text-color); margin-bottom: 20px; }
+        nav { border-top: 1px solid var(--border-color); padding-top: 15px; }
+        nav ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 20px; justify-content: flex-start; }
+        nav a { text-decoration: none; color: var(--light-text-color); font-weight: bold; padding: 5px 0; transition: color 0.3s ease; }
+        nav a:hover { color: var(--primary-color); }
+
+        /* CTA 버튼 스타일 */
+        .cta-btn { display: inline-block; background: var(--primary-color); color: #fff; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-size: 1.1em; font-weight: bold; margin-top: 20px; transition: background 0.3s ease, transform 0.2s; border: none; cursor: pointer; }
+        .cta-btn:hover { background: #005a9e; transform: translateY(-2px); }
+        .cta-group { text-align: center; margin-top: 40px; }
+
+        /* 섹션 스타일 */
+        section { background-color: #ffffff; padding: 40px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        section h2 { color: var(--primary-color); font-size: 2em; margin-top: 0; border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; margin-bottom: 25px; font-weight: bold; }
+        section h3 { color: #222; font-size: 1.5em; margin-top: 20px; margin-bottom: 15px; border-left: 4px solid var(--primary-color); padding-left: 10px; }
+        section p { color: var(--text-color); margin-bottom: 15px; }
+        
+        /* 서비스 박스 */
+        .service-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px; }
+        .service-box { background-color: var(--secondary-color); padding: 25px; border-radius: 10px; transition: transform 0.3s ease, box-shadow 0.3s ease; border: 1px solid #c0e0f0; }
+        .service-box h3 { color: var(--primary-color); margin-top: 0; font-size: 1.4em; border: none; padding-left: 0; }
+        .service-box:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+
+        /* 테이블 스타일 */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95em; }
+        th, td { border: 1px solid var(--border-color); padding: 12px; text-align: left; }
+        th { background-color: var(--primary-color); color: #ffffff; font-weight: bold; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* FAQ 스타일 */
+        .faq .item { margin-bottom: 20px; padding: 15px; background-color: #fafafa; border-radius: 8px; border-left: 5px solid var(--accent-color); }
+        .faq h3 { color: #222; font-size: 1.3em; margin-top: 0; border-left: none; padding-left: 0; font-weight: bold; }
+        .faq p { color: var(--light-text-color); font-size: 1em; }
+
+        /* 입력 폼 스타일 */
+        form { background-color: #f9f9f9; padding: 30px; border-radius: 10px; border: 1px solid #ddd; }
+        form label { font-weight: bold; display: block; margin-bottom: 8px; color: var(--primary-color); }
+        form input[type="text"], form input[type="tel"], form textarea { width: calc(100% - 20px); padding: 10px; border: 1px solid #ccc; border-radius: 5px; margin-bottom: 15px; font-size: 1em; }
+        form textarea { resize: vertical; }
+
+        /* 푸터 스타일 */
+        footer { text-align: center; color: var(--light-text-color); font-size: 0.9em; padding: 20px; border-top: 1px solid var(--border-color); margin-top: 30px; }
+
+        /* 기타 스타일 */
+        .highlight { font-weight: bold; color: var(--primary-color); }
+        .internal-links ul { list-style: none; padding: 0; margin: 20px 0; display: flex; flex-wrap: wrap; gap: 10px; }
+        .internal-links li { background-color: var(--secondary-color); padding: 8px 15px; border-radius: 20px; font-size: 0.9em; transition: background 0.3s ease; }
+        .internal-links li:hover { background-color: #dbeaff; }
+        .internal-links a { text-decoration: none; color: var(--primary-color); }
+
+        /* 이미지 및 그래프 스타일 (예시) */
+        .infographic { text-align: center; margin: 30px 0; }
+        .infographic img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
+        .note { color: var(--light-text-color); font-size: 0.9em; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- 헤더 및 내비게이션 -->
+    <header>
+        <h1>인천 송도 포장이사 전문: 원룸·아파트·오피스텔 이사짐센터 가격 비교</h1>
+        <p>송도 국제도시 지역 전문가가 <strong>원룸 포장이사</strong>, <strong>투룸 이사</strong>, <strong>아파트 이사</strong>, <strong>오피스텔 이사</strong>를 책임집니다. 2026년 이사 트렌드에 맞춘 신속·안전·무료 견적 서비스!</p>
+        <nav>
+            <ul>
+                <li><a href="#about">회사 소개</a></li>
+                <li><a href="#services">주요 서비스</a></li>
+                <li><a href="#local-info">송도 지역별 정보</a></li>
+                <li><a href="#pricing">견적 및 비용</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">상담 신청</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 자동완성 반영 키워드 섹션 (TOC 역할) -->
+    <section>
+        <h2>"송도이사" 핵심 검색어 분석 및 빠른 이동</h2>
+        <p>사용자들이 '송도이사' 검색 시 자주 찾는 핵심 키워드들을 정리했습니다. 원하는 정보로 빠르게 이동하세요.</p>
+        <ul class="internal-links">
+            <li><a href="#keyword-one-room">송도 원룸 포장이사 비용</a></li>
+            <li><a href="#keyword-two-room">송도 투룸 이사 견적</a></li>
+            <li><a href="#keyword-apartment">송도 아파트 이사 전문</a></li>
+            <li><a href="#keyword-officetel">송도 오피스텔 이사 유의사항</a></li>
+            <li><a href="#keyword-storage">송도 보관이사 서비스</a></li>
+            <li><a href="#keyword-half">송도 반포장이사 가격</a></li>
+            <li><a href="#keyword-price">이사짐센터 가격 비교</a></li>
+            <li><a href="#keyword-2026">2026년 이사 준비</a></li>
+        </ul>
+    </section>
+
+    <!-- 회사 소개 및 송도 지역 특화 강조 -->
+    <section id="about">
+        <h2>왜 송도 이사는 전문가에게 맡겨야 할까요?</h2>
+        <p>인천 연수구 <strong class="highlight">송도 국제도시</strong>는 고층 아파트와 주상복합, 오피스텔이 밀집된 신도시 특성을 가집니다. 일반적인 주택 이사와는 달리, 엘리베이터 사용 예약, 지정된 이사 시간, 복잡한 주차 규제 등 까다로운 이사 환경이 특징입니다. 저희 <strong class="highlight">송도 포장이사 전문 이사짐센터</strong>는 송도 내의 수많은 이사 경험을 통해 이러한 규정들을 완벽하게 숙지하고 있습니다. 특히 <strong class="highlight">송도 국제업무지구</strong>, <strong class="highlight">랜드마크시티</strong>, <strong class="highlight">바이오단지</strong> 등 주요 지역의 특성을 고려한 맞춤형 이사 솔루션을 제공합니다.</p>
+        <p>저희는 2026년 이사 트렌드에 발맞춰 <strong class="highlight">AI 기반 견적 시스템</strong>(초기 상담 시)과 <strong class="highlight">친환경 포장재</strong> 사용을 도입하고 있습니다. 고객님의 소중한 이삿짐을 안전하게 운송하며, 이사 후 정리정돈 서비스까지 완벽하게 제공하여 고객 만족도를 최우선으로 합니다.</p>
+    </section>
+
+    <!-- 서비스 상세 설명 섹션 -->
+    <section id="services">
+        <h2>송도 포장이사 서비스 상세 안내</h2>
+        <p>송도 지역의 다양한 주거 형태에 맞춰 최적화된 포장이사 서비스를 제공합니다. 고객님의 짐량과 예산에 따라 맞춤형 서비스 선택이 가능합니다.</p>
+
+        <div class="service-container">
+            <!-- 원룸 이사 -->
+            <div class="service-box" id="keyword-one-room">
+                <h3>원룸 포장이사 (1~2인 가구)</h3>
+                <p>1.5톤~2톤 규모의 이삿짐에 적합하며, 혼자서 이사하기 어려운 고객님들을 위한 풀 패키지 서비스입니다. 침구류, 의류, 주방용품 등 모든 짐을 전문가가 포장하고 운반, 정리까지 해드립니다.</p>
+                <ul>
+                    <li>특징: 1인 가구 최적화, 신속한 진행</li>
+                    <li>적합 대상: <strong class="highlight">송도 오피스텔</strong>, 소형 원룸 거주 고객</li>
+                </ul>
+            </div>
+            <!-- 투룸 이사 -->
+            <div class="service-box" id="keyword-two-room">
+                <h3>투룸/쓰리룸 포장이사 (2~3인 가구)</h3>
+                <p>짐이 늘어나는 신혼부부 또는 3인 가족을 위한 서비스입니다. 2.5톤~5톤 규모의 짐을 안전하게 운반하며, 꼼꼼한 정리정돈으로 새집에서의 시작을 도와드립니다.</p>
+                <ul>
+                    <li>특징: 가구 배치, 주방 정리 포함</li>
+                    <li>적합 대상: <strong class="highlight">송도 투룸 빌라</strong>, <strong class="highlight">소형 아파트</strong> 이사 고객</li>
+                </ul>
+            </div>
+            <!-- 아파트 이사 -->
+            <div class="service-box" id="keyword-apartment">
+                <h3>아파트 포장이사 (대형 가구)</h3>
+                <p>송도 더샵, 힐스테이트 등 대단지 아파트 이사를 위한 전문 서비스입니다. 고층 이사 시 사다리차, 스카이차 등 전문 장비를 동원하며, 대형 가전/가구 파손 방지 포장에 중점을 둡니다.</p>
+                <ul>
+                    <li>특징: 전문 포장팀 구성, 이사 보험 가입</li>
+                    <li>적합 대상: <strong class="highlight">송도 센트럴파크 푸르지오</strong>, <strong class="highlight">송도 롯데캐슬</strong> 거주 고객</li>
+                </ul>
+            </div>
+            <!-- 오피스텔 이사 -->
+            <div class="service-box" id="keyword-officetel">
+                <h3>오피스텔 특화 이사</h3>
+                <p>송도 오피스텔의 특성상 엘리베이터 사용에 제약이 많습니다. 이사 전 단지 관리사무소와의 협의를 통해 시간 및 짐 반출입 규정을 준수하며 안전하게 이사합니다.</p>
+                <ul>
+                    <li>특징: 엘리베이터 예약 대행, 층별 이사 경험 풍부</li>
+                    <li>적합 대상: <strong class="highlight">송도 아트윈 푸르지오 오피스텔</strong>, <strong class="highlight">송도 센토피아 포레스트</strong> 거주 고객</li>
+                </ul>
+            </div>
+            <!-- 보관 이사 -->
+            <div class="service-box" id="keyword-storage">
+                <h3>보관 이사 및 이사짐센터</h3>
+                <p>새집 입주 일정 지연이나 인테리어 공사 등으로 인해 잠시 짐을 보관해야 할 때 이용합니다. 습도 및 온도 관리가 철저한 안전 보관창고를 제공합니다.</p>
+                <ul>
+                    <li>특징: 단기/장기 보관 가능, 24시간 보안 시스템</li>
+                    <li>적합 대상: 입주 시기 불일치 고객</li>
+                </ul>
+            </div>
+            <!-- 반포장 이사 -->
+            <div class="service-box" id="keyword-half">
+                <h3>반포장 이사</h3>
+                <p>이사 비용을 절약하고 싶지만 포장이 부담스러운 고객을 위한 서비스입니다. 포장은 이사짐센터에서 진행하고, 잔짐 정리는 고객이 직접 합니다.</p>
+                <ul>
+                    <li>특징: 비용 절약형, 짐량 적은 고객 선호</li>
+                    <li>적합 대상: <strong class="highlight">송도 1공구</strong>, <strong class="highlight">3공구</strong> 내 소형 가구</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 송도 지역별 이사 유의사항 (로컬 SEO 강화) -->
+    <section id="local-info">
+        <h2>송도 국제도시 지역별 이사 유의사항 (2026년 업데이트)</h2>
+        <p>송도는 구역별로 개발 시기와 주거 환경이 상이합니다. 송도 이사 시 반드시 확인해야 할 지역별 특이사항을 정리했습니다.</p>
+        
+        <!-- 송도 1공구 -->
+        <h3>송도 1공구 이사 (더샵 퍼스트월드, 풍림 아이원 등)</h3>
+        <p>초기에 개발된 1공구는 비교적 노후된 단지가 많아 짐 보관이나 수리/리모델링 기간을 포함하는 이사가 잦습니다. <strong class="highlight">송도 더샵 퍼스트월드</strong>, <strong class="highlight">풍림 아이원</strong> 등은 주차 공간이 협소할 수 있으므로 사전에 이사 차량 진입 동선을 철저히 계획해야 합니다. 2026년 리모델링 단지가 증가함에 따라 보관이사 수요도 증가할 것으로 예상됩니다.</p>
+        
+        <!-- 송도 3공구 (국제업무지구) -->
+        <h3>송도 3공구 이사 (센트럴파크, 아트윈 푸르지오 등)</h3>
+        <p>송도의 핵심 상권이자 고층 주상복합이 밀집한 3공구는 이사 시 엘리베이터 사용 예약이 필수입니다. <strong class="highlight">송도 센트럴파크 푸르지오</strong>, <strong class="highlight">송도 아트윈 푸르지오</strong> 등은 이사 시간이 오전/오후로 엄격하게 분리되거나 주말 이사가 제한되는 경우가 많습니다. 반드시 사전에 관리사무소에 확인 후 예약을 진행해야 합니다.</p>
+        
+        <!-- 송도 5공구 -->
+        <h3>송도 5공구 이사 (더샵 마스터뷰, 힐스테이트 레이크 등)</h3>
+        <p>상대적으로 신축 단지가 많은 5공구는 이사 수요가 꾸준히 높은 지역입니다. <strong class="highlight">송도 더샵 마스터뷰</strong>, <strong class="highlight">송도 힐스테이트 레이크</strong> 등 대단지 이사 시 짐량이 많은 만큼, 포장재 파손 방지 및 동선 확보가 중요합니다. 신규 단지일수록 관리 규정이 엄격할 수 있으므로, 전문가의 조언이 필요합니다.</p>
+
+        <!-- 송도 6, 8공구 (랜드마크시티) -->
+        <h3>송도 6공구 및 8공구 이사 (랜드마크시티, e편한세상 등)</h3>
+        <p>최근 입주가 활발하게 이루어지고 있는 6공구, 8공구 지역은 입주 초기에 이사 대란이 발생할 수 있습니다. <strong class="highlight">송도 랜드마크시티</strong>, <strong class="highlight">송도 힐스테이트 레이크 3차</strong> 등 입주 지정 기간에는 예약이 필수이며, 2026년에도 신규 단지 입주가 예정되어 있어 미리 견적을 받고 예약하는 것이 중요합니다.</p>
+    </section>
+
+    <!-- 견적 안내 섹션 -->
+    <section id="pricing">
+        <h2>송도 포장이사 견적 안내 및 예상 비용 분석</h2>
+        <p>포장이사 비용은 짐량, 거리, 인력, 옵션(사다리차, 보관 등)에 따라 달라집니다. 2026년 물가 상승률을 반영한 예상 가격표입니다. 정확한 견적은 방문 상담을 통해 무료로 제공받으세요.</p>
+
+        <table border="1" cellpadding="8" cellspacing="0">
+            <tr>
+                <th>이사 유형</th>
+                <th>예상 가격대 (원)</th>
+                <th>포함 서비스 및 특징</th>
+            </tr>
+            <tr>
+                <td>원룸 포장이사 (1톤)</td>
+                <td>25만–40만</td>
+                <td>1~2인 인력, 1톤 트럭, 포장 및 정리. 짐량에 따라 추가 비용 발생</td>
+            </tr>
+            <tr>
+                <td>투룸 포장이사 (2.5톤)</td>
+                <td>40만–60만</td>
+                <td>2~3인 인력, 2.5톤 트럭, 가구 배치 및 주방 정리. <strong class="highlight">송도 투룸 이사</strong> 최적화</td>
+            </tr>
+            <tr>
+                <td>아파트 포장이사 (5톤)</td>
+                <td>60만–100만</td>
+                <td>3~4인 인력, 5톤 트럭, 사다리차 옵션 별도. <strong class="highlight">대형 아파트 이사</strong> 표준 견적</td>
+            </tr>
+            <tr>
+                <td>사무실/오피스텔 이사</td>
+                <td>40만–80만</td>
+                <td>오피스텔 특화 포장, 엘리베이터 작업 전문. 짐량 및 층수에 따라 유동적</td>
+            </tr>
+            <tr>
+                <td>보관 서비스 (창고 보관)</td>
+                <td>10만/월~</td>
+                <td>짐량 기준, 1개월 단위 보관. 습도/온도 관리. <strong class="highlight">송도 지역 보관이사</strong> 수요 증가</td>
+            </tr>
+        </table>
+        <p class="note">※ 위 가격은 2026년 초 기준 예상 비용이며, 정확한 견적은 이사 날짜(손 없는 날), 짐량, 층수, 거리 등에 따라 달라질 수 있습니다. 방문 견적을 추천합니다.</p>
+        
+        <!-- 그래프를 활용한 정보성 콘텐츠 추가 -->
+        <div class="infographic">
+            <h3>2026년 송도 지역 이사 비용 변동 요인 분석</h3>
+            <!-- 그래프 예시: A/B 비교 -->
+            <img src="https://via.placeholder.com/600x300?text=2026년+송도+이사+비용+변동+요인+분석+그래프" alt="송도 이사 비용 변동 요인 그래프: 짐량, 거리, 날짜가 주된 영향을 미침.">
+            <p class="note">출처: 2026년 이사 시장 동향 보고서 (가상). 주요 변동 요인은 짐량, 이사 거리, 성수기 여부입니다. 특히 주말 및 '손 없는 날'은 평일 대비 15~20% 할증이 붙을 수 있습니다.</p>
+        </div>
+    </section>
+
+    <!-- FAQ 섹션 -->
+    <section id="faq" class="faq">
+        <h2>자주 묻는 질문 (FAQ)</h2>
+        <p>고객님들이 송도 포장이사 견적 및 서비스에 대해 가장 많이 궁금해하는 질문을 모았습니다.</p>
+        
+        <div class="item">
+            <h3>Q1: 송도 이사 시 엘리베이터 사용 예약은 어떻게 하나요?</h3>
+            <p>A: 송도 대형 아파트 및 오피스텔 단지는 대부분 관리사무소에 이사 일정을 사전 통보하고 엘리베이터 사용 예약을 해야 합니다. 저희 이사짐센터에 의뢰하시면 이 과정까지 대행해드립니다. 특히 <strong class="highlight">송도 더샵 마스터뷰</strong>, <strong class="highlight">송도 글로벌캠퍼스 푸르지오</strong> 등은 규정이 엄격합니다.</p>
+        </div>
+        
+        <div class="item">
+            <h3>Q2: 이사짐센터를 고를 때 가장 중요한 것은 무엇인가요?</h3>
+            <p>A: 여러 업체의 견적을 비교하는 것이 좋습니다. 단순 가격 비교보다는 해당 지역(송도) 이사 경험이 풍부한지, 계약서에 이사짐 파손에 대한 배상 책임(이삿짐 운반업 표준약관)이 명시되어 있는지 확인해야 합니다.</p>
+        </div>
+        
+        <div class="item">
+            <h3>Q3: 송도 지역의 이사 성수기는 언제인가요?</h3>
+            <p>A: 송도는 신규 입주 단지가 많아 일반적인 이사 성수기(봄/가을) 외에도 대규모 입주 기간에 이사 수요가 폭증합니다. 2026년 특정 단지 입주 기간을 사전에 확인하고 최소 한 달 전에 예약하는 것이 좋습니다.</p>
+        </div>
+        
+        <div class="item">
+            <h3>Q4: 이사짐 보관 서비스의 비용 산정 기준은 무엇인가요?</h3>
+            <p>A: 보관 기간(월 단위)과 짐의 양(평수 또는 부피)에 따라 결정됩니다. 이사 전후 공백이 생길 경우, 저희 센터의 보관 서비스를 이용하시면 안전하고 합리적인 비용으로 짐을 보관할 수 있습니다.</p>
+        </div>
+        
+        <div class="item">
+            <h3>Q5: 포장이사 진행 시 식기류 포장은 어떻게 이루어지나요?</h3>
+            <p>A: 파손 위험이 높은 식기류는 에어캡(뽁뽁이)과 전용 포장재를 사용하여 개별 포장합니다. 특히 <strong class="highlight">송도 아파트</strong>의 고가 주방용품이 많은 점을 감안하여 꼼꼼하게 포장하고 운반합니다.</p>
+        </div>
+    </section>
+
+    <!-- 외부 신뢰도 링크 및 정보성 콘텐츠 (E-A-T 강화) -->
+    <section>
+        <h2>송도 이사 관련 정보성 콘텐츠 및 신뢰성 확보 자료</h2>
+        <p>이사 서비스의 신뢰도를 높이고, 고객님께 유용한 정보를 제공하기 위해 공신력 있는 외부 자료를 인용합니다.</p>
+        <div class="external-resources">
+            <h3>관련 법규 및 지침 확인</h3>
+            <ul>
+                <li><a href="https://www.ftc.go.kr/www/selectTbNewsView.do?key=23&amp;dataNo=8311" target="_blank">이사짐 운반업 표준 약관 (공정거래위원회)</a>: 이사 서비스 계약 전 확인해야 할 소비자 권익 보호 규정입니다.</li>
+                <li><a href="https://www.law.go.kr/lsInfoP.do?lsiSeq=186255&amp;efYd=20171019#0000" target="_blank">이사화물운송 표준약관 (법제처)</a>: 이사 과정 중 발생할 수 있는 분쟁 해결 기준입니다.</li>
+                <li><a href="https://www.namu.wiki/w/%EC%86%A1%EB%8F%84%20%EA%B5%AD%EC%A0%9C%EB%8F%84%EC%8B%9C" target="_blank">나무위키 - 송도 국제도시</a>: 송도 지역의 역사와 주요 단지 정보를 확인할 수 있습니다.</li>
+            </ul>
+            <h3>송도 지역 정보 및 생활 지침</h3>
+            <ul>
+                <li><a href="https://www.incheon.go.kr/main/index" target="_blank">인천광역시청 공식 홈페이지</a>: 송도 지역의 행정 정보 및 생활 안내를 확인할 수 있습니다.</li>
+                <li><a href="https://www.yn.go.kr/main/index.do" target="_blank">연수구청 공식 홈페이지</a>: 송도동이 속한 연수구의 지역 소식 및 민원 정보를 제공합니다.</li>
+            </ul>
+            <p class="note">출처: 공정거래위원회, 법제처, 나무위키, 인천광역시청, 연수구청 (2026년 기준)</p>
+        </div>
+    </section>
+
+    <!-- 연락처 및 상담 신청 섹션 -->
+    <section id="contact">
+        <h2>송도 포장이사 견적 문의 및 상담 신청</h2>
+        <p><strong>송도 포장이사</strong> 전문가의 무료 방문 견적을 지금 바로 신청하세요. 짐량 및 이사 환경을 정확히 파악하여 합리적인 비용을 제시해 드립니다.</p>
+        <p>📞 전화: <a href="tel:032-XXX-XXXX" class="cta-btn">지금 바로 전화 걸기: 032-XXX-XXXX</a></p>
+
+        <h3>온라인 무료 견적 요청</h3>
+        <p>아래 양식에 이사 정보를 입력해 주시면, 확인 후 24시간 이내에 전문 상담원이 연락드립니다.</p>
+        <form action="/submit-quote" method="post">
+            <p><label for="name">이름 (필수)</label><br><input type="text" id="name" name="name" required placeholder="예: 홍길동"></p>
+            <p><label for="phone">연락처 (필수)</label><br><input type="tel" id="phone" name="phone" required placeholder="예: 010-1234-5678"></p>
+            <p><label for="moving-type">이사 유형 (필수)</label><br>
+                <select id="moving-type" name="moving-type" required>
+                    <option value="">-- 선택하세요 --</option>
+                    <option value="원룸">원룸 포장이사 (1~2인)</option>
+                    <option value="투룸">투룸 포장이사 (2~3인)</option>
+                    <option value="아파트">아파트 포장이사 (3인 이상)</option>
+                    <option value="오피스텔">오피스텔 포장이사</option>
+                    <option value="보관이사">보관이사</option>
+                    <option value="사무실">사무실 이사</option>
+                </select>
+            </p>
+            <p><label for="start-address">출발지 (송도 내 주소)</label><br><input type="text" id="start-address" name="start-address" required placeholder="예: 송도동 센트럴파크 푸르지오"></p>
+            <p><label for="end-address">도착지 (주소)</label><br><input type="text" id="end-address" name="end-address" required placeholder="예: 송도동 더샵 마스터뷰 또는 타 지역"></p>
+            <p><label for="moving-date">이사 희망 날짜</label><br><input type="date" id="moving-date" name="moving-date" required></p>
+            <p><label for="details">구체적인 이사 내용 (짐량, 특이사항, 사다리차 여부 등)</label><br><textarea id="details" name="details" rows="5" required placeholder="예: 짐이 많은 편입니다. 고층 이사이며 사다리차 사용이 필요합니다."></textarea></p>
+            <button type="submit" class="cta-btn">무료 견적 요청하기</button>
+        </form>
+
+        <!-- 구글맵 임베드 (주소 기반) -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1587.3506306869838!2d126.63462836279626!3d37.39129446279313!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b52062402179b%3A0x6331901b54c0e62!2sSongdo-dong%2C%20Yeonsu-gu%2C%20Incheon!5e0!3m2!1sen!2skr!4v1700000000000" width="100%" height="300" style="border:0; margin-top: 30px;" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>Copyright &copy; 2026 송도 포장이사 전문 이사짐센터. | 주소: 인천광역시 연수구 송도동 2XX | 대표: 홍길동 | 사업자등록번호: 123-45-67890</p>
+        <p>본 페이지의 모든 정보는 2026년 이사 시장 동향을 반영하여 작성되었습니다. 정확한 정보는 상담을 통해 확인하시기 바랍니다.</p>
+    </footer>
+
+  
